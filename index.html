@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>厨神潜质测试｜厨房人格研究所</title>
+<style>
+:root {
+  --bg:#fff8f0;--paper:#fffefa;--ink:#30251f;
+  --muted:#88786c;--orange:#e97845;--line:#efdfd0;
+  --shadow:0 20px 60px rgba(91,55,28,.09);
+}
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;color:var(--ink);
+ font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;
+ background:radial-gradient(circle at 7% 5%,#ffe5d2,transparent 26%),
+ radial-gradient(circle at 95% 15%,#fff0c8,transparent 25%),var(--bg)
+}
+button{font:inherit}
+.wrap{max-width:1000px;margin:auto;padding:24px 20px 45px}
+.top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+.brand{font-weight:900;color:var(--ink)}.brand b{color:var(--orange)}
+.tag{background:white;border:1px solid var(--line);padding:8px 13px;border-radius:99px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:25px;padding:45px 5px 30px}
+.eyebrow{display:inline-block;background:white;border:1px solid var(--line);border-radius:99px;padding:8px 13px;color:#cf6236;font-size:12px;font-weight:800}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.1;letter-spacing:-.05em;margin:18px 0}
+h1 em{font-style:normal;color:var(--orange)}
+.hero p{color:var(--muted);font-size:15px;line-height:1.9}
+.art{height:260px;display:grid;place-items:center;position:relative}
+.plate{width:215px;height:215px;border-radius:50%;background:white;border:11px solid #f0e3d4;box-shadow:var(--shadow);display:grid;place-items:center;font-size:100px;transform:rotate(-8deg)}
+.float{position:absolute;background:white;border:1px solid var(--line);border-radius:15px;padding:10px 13px;box-shadow:0 8px 24px #73451b12;font-size:13px;font-weight:800}
+.f1{top:15px;right:0}.f2{bottom:15px;left:0}.f3{right:0;bottom:70px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:25px;box-shadow:var(--shadow);overflow:hidden}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;padding:21px 26px;border-bottom:1px solid #f3e8de}
+.quiz-head h2{font-size:18px;margin:0}
+.step{font-size:13px;color:var(--muted)}
+.progress{height:7px;background:#f5e9df;margin:0 26px;border-radius:99px;overflow:hidden}
+.progress-in{height:100%;width:0;background:linear-gradient(90deg,var(--orange),#ffc36d);transition:width .25s}
+.quiz-body{padding:28px 26px}
+.kicker{font-size:11px;letter-spacing:.12em;font-weight:900;color:var(--orange);margin-bottom:10px}
+.question{font-size:clamp(22px,3.3vw,30px);line-height:1.45;margin:0 0 10px}
+.desc{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:22px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.option{display:flex;gap:12px;text-align:left;min-height:80px;padding:15px;background:white;border:1.5px solid var(--line);border-radius:16px;cursor:pointer;color:var(--ink);transition:.16s}
+.option:hover{border-color:#eda47d;transform:translateY(-2px)}
+.option.selected{border-color:var(--orange);background:#fff2e9;box-shadow:0 0 0 2px #e9784515}
+.opt-icon{font-size:24px;flex:0 0 29px}
+.opt-text strong{display:block;font-size:14px;margin-bottom:5px}
+.opt-text small{display:block;font-size:12px;line-height:1.5;color:var(--muted)}
+.controls{display:flex;justify-content:space-between;align-items:center;margin-top:25px}
+.back{border:0;background:transparent;color:var(--muted);cursor:pointer;padding:12px 0}
+.back:disabled{opacity:.25}
+.primary{border:0;border-radius:99px;padding:13px 24px;background:var(--orange);color:white;font-weight:800;cursor:pointer;box-shadow:0 7px 18px #e9784530}
+.primary:disabled{background:#e4d7cb;box-shadow:none;cursor:not-allowed}
+.note{text-align:center;color:#a39488;font-size:12px;margin-top:16px;line-height:1.7}
+.result{display:none;text-align:center;padding:32px 25px}
+.result.show{display:block}.quiz.hide{display:none}
+.result-badge{display:inline-block;background:#fff0e3;color:#cb6338;border-radius:99px;padding:8px 13px;font-size:12px;font-weight:800}
+.result-emoji{font-size:85px;margin:16px 0 5px}
+.result h2{font-size:clamp(29px,5vw,42px);margin:5px 0}
+.result-sub{color:#d66b3d;font-weight:800}
+.result-desc{max-width:680px;margin:auto;color:#77685d;line-height:1.9;font-size:15px}
+.traits{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:21px 0}
+.trait{background:white;border:1px solid var(--line);border-radius:99px;padding:8px 12px;font-size:12px;color:#76675a}
+.scores{max-width:680px;margin:27px auto;text-align:left;background:white;border:1px solid var(--line);border-radius:18px;padding:20px}
+.scores h3{font-size:16px}
+.score-row{display:grid;grid-template-columns:95px 1fr 42px;gap:10px;align-items:center;margin:14px 0;font-size:13px}
+.bar{height:10px;background:#f3e8de;border-radius:99px;overflow:hidden}
+.bar-in{height:100%;background:linear-gradient(90deg,var(--orange),#ffc36d)}
+.tip{max-width:680px;margin:0 auto 23px;text-align:left;background:#fff5e9;border:1px solid #f1dfca;border-radius:17px;padding:16px;line-height:1.9;font-size:14px}
+.tip strong{color:#cb6338}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.secondary{border:1px solid var(--line);background:white;border-radius:99px;padding:12px 20px;font-weight:800;cursor:pointer}
+.footer{text-align:center;color:#a39488;font-size:12px;padding-top:22px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#30251f;color:white;border-radius:99px;padding:11px 17px;transition:.2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){
+ .wrap{padding:17px 13px 35px}
+ .hero{grid-template-columns:1fr;padding:28px 2px 22px;gap:0}
+ .art{height:180px;order:-1}
+ .plate{width:155px;height:155px;font-size:73px;border-width:8px}
+ .float{font-size:11px;padding:8px}
+ h1{margin-top:14px}
+ .hero p{font-size:14px}
+ .quiz-head{padding:18px 16px}
+ .progress{margin:0 16px}
+ .quiz-body{padding:22px 16px}
+ .options{grid-template-columns:1fr;gap:9px}
+ .option{min-height:68px;padding:13px}
+ .result{padding:24px 15px}
+ .score-row{grid-template-columns:80px 1fr 35px;gap:7px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+ <div class="brand">🍳 <b>厨房人格研究所</b> / FUN TEST</div>
+ <div class="tag">轻松测一测 · 约4分钟</div>
+</div>
+
+<header class="hero">
+ <div>
+  <div class="eyebrow">✨ 不会做饭也能测，不给你乱扣分</div>
+  <h1>你的厨房隐藏身份<br>到底是<em>什么？</em></h1>
+  <p>这不是厨艺考试，也不是做饭爱好调查。我们会先了解你与厨房的距离，再观察你的调味判断、火候意识、创意搭配、效率和应变方式。没做过、不适用的题目可以跳过；完全不想做饭，也有属于你的结果。</p>
+ </div>
+ <div class="art">
+  <div class="plate">🍳</div>
+  <div class="float f1">🧂 调味有直觉？</div>
+  <div class="float f2">🌱 潜力待解锁</div>
+  <div class="float f3">😋 美食也很棒</div>
+ </div>
+</header>
+
+<section class="card" id="quizCard">
+ <div class="quiz" id="quiz">
+  <div class="quiz-head">
+   <h2>厨神潜质测试</h2>
+   <div class="step" id="step"></div>
+  </div>
+  <div class="progress"><div class="progress-in" id="progress"></div></div>
+  <div class="quiz-body">
+   <div class="kicker" id="kicker"></div>
+   <h3 class="question" id="question"></h3>
+   <p class="desc" id="desc"></p>
+   <div class="options" id="options"></div>
+   <div class="controls">
+    <button class="back" id="back" disabled>← 上一题</button>
+    <button class="primary" id="next" disabled>选好了，下一题 →</button>
+   </div>
+   <p class="note">没有标准答案。“没经验 / 不适用”会跳过本题，不计入能力分。</p>
+  </div>
+ </div>
+ <div class="result" id="result"></div>
+</section>
+<div class="footer">本测试仅供娱乐 · 不会做饭不是缺点，喜欢吃也是一种生活智慧 😋</div>
+</div>
+<div class="toast" id="toast">结果已复制</div>
+
+<script>
+const profiles={
+chef:["👑","天选厨神","直觉、技巧和解决问题的能力都很在线！","你在多个厨房维度上都有不错的判断力，也愿意主动观察和调整。你不仅追求做出来，也会在意为什么这样做更好。",["综合能力均衡","善于判断","持续进阶型"],"挑战一道需要同时处理多种食材的完整菜单，记录时间、火候和调味变化，把直觉沉淀成稳定方法。"],
+heat:["🔥","火候掌控大师","你很会观察变化，不容易被锅里的突发状况带跑。","你擅长根据实际变化调整步骤。继续积累不同食材的经验，就能做出更稳定的口感。",["观察力强","熟度判断派","稳健操作"],"选一道需要控制煎、炒或炖煮时间的菜，记录火力、时间和成品变化。"],
+seasoning:["🧂","黄金调味师","你关注的是味道之间的平衡，而不是只会加料。","你的调味判断比较突出，能想到先尝味、再少量调整。对你来说，调味不是越多越好，而是让风味更协调。",["味觉敏锐","少量调整","风味平衡"],"每次调味只改变一个变量，记录盐、酸、甜、鲜的变化。"],
+experiment:["🧪","料理实验家","你喜欢弄懂原理，也不满足于只照着步骤做。","你有探索和复盘的倾向，愿意从结果中寻找原因。你的优势在于好奇心和实验精神。",["好奇心强","愿意复盘","研究型思维"],"每次试验只调整一个因素，例如火力或一种调味料。"],
+creative:["🎨","灵感型创意料理家","你总能想到食材组合的另一种可能。","你愿意尝试替代食材和新搭配。把创意记录下来，再逐步校准比例，你的灵感就更容易复现。",["敢于尝试","组合思维","创意不设限"],"从一道熟悉的家常菜开始，每次只换一种食材或风味。"],
+speed:["⚡","极速出餐王","你重视流程和效率，能把复杂事拆成可执行步骤。","你偏好省时、省步骤、好安排的方式。厨房效率不只是快，更是减少重复劳动并保证结果。",["流程意识","时间管理","务实高效"],"准备一份快速菜单清单，把等待时间和收尾步骤安排好。"],
+rescue:["🛠️","厨房危机处理专家","遇到变化时，你会想办法，而不是只盯着原计划。","你擅长从现状出发找替代方案。能判断什么可以调整、什么需要重来，是很实用的能力。",["临场应变","问题解决","复盘意识"],"每次遇到小失误，记录问题、补救方式和最终结果。"],
+home:["🥘","家常菜守护神","不追求花哨，但你重视稳定、舒服的一餐。","你的选择偏向可靠、实用和可复现。把基础做好，让日常饮食更稳定，就是你的优势。",["稳扎稳打","实用主义","生活料理派"],"挑选三道常做的菜，把关键步骤和调味量记下来。"],
+practical:["🍱","高效实用派","做饭对你而言是生活技能，简单、可靠、够用就好。","你重视实际需要，不一定想把下厨变成爱好。选择适合自己的方式，也是一种生活智慧。",["省时省心","目标明确","不做无效努力"],"准备几种简单组合餐，不必追求复杂厨艺，安全、营养、方便就很好。"],
+foodie:["🍽️","美食享乐主义者","你热爱美食，但不需要亲自下厨才能享受它。","你更享受品尝、发现餐厅和感受美食带来的快乐，而不是研究烹饪过程。没做过不等于没能力，只是目前没有足够实践来判断厨艺。",["懂得享受","美食体验派","不勉强自己"],"继续放心享受好吃的！如果哪天想尝试，可以从一道简单的小食开始；如果不想，也完全没问题。"],
+potential:["🌱","厨房潜力待解锁","目前经验还不够多，暂时不代表你没有天赋。","你选择了不少没经验或不适用的选项，所以我们不会用空白答案给你打低分。现在还不能可靠判断你的烹饪能力。",["不急着贴标签","经验待积累","从零开始也可以"],"如果想试试，从煮面、煎蛋或一道简单拌菜开始。"],
+curious:["🌼","新手探索家","经验可能还不多，但你愿意给自己一个尝试的机会。","你对做饭有一定好奇心，不必现在就掌握所有技巧。适合轻松尝试、逐步积累，而不是给自己压力。",["愿意尝试","慢慢解锁","成长型心态"],"挑一道自己喜欢吃、步骤不超过五步的菜，先跟着可靠食谱做一次。"]
+};
+
+const profileQuestions=[
+{q:"你和厨房的熟悉程度是？",desc:"只描述经验，不代表你的天赋或潜力。",a:[
+["🌱","厨房对我来说像未知领域","基本没做过饭","none"],
+["🍜","会泡面、加热或做简单食物","入门级经验","basic"],
+["🥚","偶尔做饭，复杂的就不太会","轻度实践","casual"],
+["🥘","平时会做一些家常菜","有一定经验","regular"],
+["👩‍🍳","经常下厨，也会研究做法","熟练或进阶","advanced"]]},
+{q:"如果有机会，你对做饭的兴趣是？",desc:"喜欢吃和喜欢做是两回事，按真实想法选择。",a:[
+["🚫","完全没兴趣，能不做就不做","厨房不是我的兴趣区","none"],
+["🍽️","我喜欢美食，但更喜欢别人做","认真享受美食也很棒","foodie"],
+["😐","不排斥，但也不会主动研究","有需要时再说","neutral"],
+["🌱","有点想学，会为好吃的尝试","愿意慢慢解锁","curious"],
+["✨","很享受做饭和研究新菜","厨房让我快乐","high"]]},
+{q:"哪种厨房情景最像你？",desc:"这道题了解你的偏好，不考厨艺。",a:[
+["🛵","点外卖、下馆子，快乐最重要","美食体验派","enjoy"],
+["⚡","简单吃饱就好，省事第一","务实省事派","practical"],
+["🏡","愿意学几道拿手菜照顾自己或家人","生活实用派","care"],
+["🧪","看到新奇食材和搭配就想试试","探索实验派","experiment"],
+["🎨","喜欢把做饭变成一种创作","创意表达派","creative"]]}
+];
+
+const dimensions=[
+{id:"seasoning",name:"调味直觉",icon:"🧂",qs:[
+["煮一锅汤时，你会怎样判断味道够不够？",["先尝一口，再少量调整","按熟悉的比例放调料","跟着食谱或包装说明","不太会判断，通常随意"]],
+["如果一道菜味道有点淡，怎样处理更稳妥？",["先尝味，再少量补调味","直接多加一点盐或酱料","查一下食谱建议","不确定该怎么调整"]],
+["面对不熟悉的调味料，你通常会？",["先少量试味，逐步调整","查一下常见用法再试","按食谱给的量使用","不太想尝试陌生调料"]],
+["一道菜“差一点意思”，最可能先检查什么？",["咸淡、酸甜、鲜香是否平衡","火候和熟度","食材是否新鲜","说不清，凭当下感觉"]],
+["尝到一道新菜，你能否分辨它的主要风味？",["能说出几种味道的平衡","大致能分辨咸淡或酸甜","需要对照描述才知道","通常只觉得好吃或不好吃"]]},
+{id:"heat",name:"火候控制",icon:"🔥",qs:[
+["煎东西时，发现表面很快变深色，你会怎么做？",["降低火力，观察内部熟度","继续煎到自己觉得差不多","先翻面，再根据状态调整","不确定怎么处理"]],
+["炒菜时锅里开始冒很多烟，你会怎么处理？",["先关小火或移锅，避免烧焦","快速翻炒，尽快出锅","加点水让温度降下来","不太确定该怎么做"]],
+["煮东西时，怎样判断是否需要继续加热？",["观察状态并按食材调整时间","严格照食谱时间","尝一下或切开确认","通常凭计时器提醒"]],
+["控制火候最重要的是什么？",["观察食材变化并及时调整","火力开大一点更有效率","记住每种菜的固定时间","按设备档位操作即可"]],
+["煎蛋或煎饼时，你会如何减少焦糊或夹生？",["用适中火力并观察状态","按经验设定火力和时间","适时翻面确认情况","还没有相关经验"]]},
+{id:"creativity",name:"创意搭配",icon:"🎨",qs:[
+["冰箱里剩下一点蔬菜和鸡蛋，你会？",["想想能否组合成新的一餐","搜索现成食谱照着做","分开处理，避免搭配出错","如果麻烦就不做了"]],
+["遇到没试过的食材，你更倾向于？",["想想它和什么风味适合","先找可靠食谱","先尝试最简单的做法","通常不会主动尝试"]],
+["熟悉的菜想做出新变化，你会？",["试着调整食材或风味组合","找一个新版本的食谱","先把原版做稳定","我更喜欢直接吃现成的"]],
+["家里食材不齐，缺了一种，你会？",["找风味或功能相近的替代品","查查能不能替换","尽量等食材齐了再做","不知道该怎么替换"]],
+["看到别人分享新奇料理时，你的第一反应是？",["想研究做法，甚至改出自己的版本","收藏起来，有机会照着做","觉得新鲜，但不一定尝试","看看就好，没兴趣下厨"]]},
+{id:"efficiency",name:"厨房效率",icon:"⚡",qs:[
+["临时要准备一顿饭，你会如何开始？",["先规划顺序和所需时间","先处理最容易的一道菜","边做边想下一步","尽量选择外卖或现成食品"]],
+["需要同时准备主食和菜时，你会？",["安排好先后顺序，利用等待时间","先做完一道再开始下一道","想到什么做什么","尽量减少需要动手的步骤"]],
+["备菜时，你觉得最有帮助的习惯是？",["先看全流程，再集中准备食材","用到什么再拿什么","按食谱顺序一步步来","不太了解备菜流程"]],
+["做完一顿饭后，你通常会？",["顺手整理，减少下次准备成本","先吃饭，之后再收拾","只清理必须清理的部分","希望有人来收拾"]],
+["要在有限时间内准备食物，你会优先考虑？",["能并行处理的步骤和整体节奏","最拿手、最稳妥的做法","选步骤最少的食物","直接买现成的更方便"]]},
+{id:"adaptability",name:"应变能力",icon:"🛠️",qs:[
+["做菜时发现少了一种关键食材，你会？",["判断能否替代，并调整做法","搜索替代方案后再决定","尽量按原计划完成","放弃这道菜，换个简单的"]],
+["一道菜意外做咸了，你会怎么想？",["根据菜品判断稀释或平衡味道","加一些合适食材试试","搭配主食一起吃","下次再说，这次认了"]],
+["食物状态和食谱图片不一样，你会？",["观察原因，判断是否要调整","再看一遍食谱步骤","继续按原定时间操作","担心失败，不知道怎么办"]],
+["朋友临时提出饮食偏好，你会？",["调整菜单或做法，尽量兼顾","找一道适合的替代菜","让对方自己选能吃的","觉得麻烦，尽量不改"]],
+["第一次尝试失败后，你通常会？",["复盘原因，下次改一个变量","找更清楚的教程再试","按原方法再来一次","以后尽量不做这道菜"]]}
+];
+
+const questions=[...profileQuestions];
+dimensions.forEach(d=>d.qs.forEach(q=>questions.push({
+type:"ability",dim:d.id,dimName:d.name,q:q[0],
+desc:"选择最接近你真实反应的一项。没有相关经验也没关系，可以选择最后一项跳过。",
+a:[
+[d.icon,q[1][0],"判断细致，愿意主动调整",3],
+["🌟",q[1][1],"有一定方法，倾向稳妥处理",2],
+["🧭",q[1][2],"更依赖步骤或简单经验",1],
+["💭",q[1][3],"目前较少实践，或更倾向省事",0],
+["🌱","我没做过 / 不了解 / 不适用","跳过本题，不会扣分","na"]
+]})));
+
+let current=0;
+let answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+
+function render(){
+ const q=questions[current];
+ $("step").textContent=`第 ${current+1} / ${questions.length} 题`;
+ $("kicker").textContent=q.type==="profile"?"FIRST, GET TO KNOW YOU":q.dimName.toUpperCase()+" · 能力观察";
+ $("question").textContent=q.q;
+ $("desc").textContent=q.desc||"";
+ $("progress").style.width=`${current/questions.length*100}%`;
+ $("back").disabled=current===0;
+ $("next").disabled=answers[current]===null;
+ $("next").textContent=current===questions.length-1?"揭晓我的厨房身份 ✨":"选好了，下一题 →";
+
+ $("options").innerHTML=q.a.map((a,i)=>`
+ <button class="option ${answers[current]?.index===i?"selected":""}" data-i="${i}">
+ <span class="opt-icon">${a[0]}</span>
+ <span class="opt-text"><strong>${a[1]}</strong><small>${a[2]}</small></span>
+ </button>`).join("");
+
+ $("options").querySelectorAll(".option").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+   const i=Number(btn.dataset.i);
+   answers[current]={index:i,value:q.a[i][3]};
+   render();
+  });
+ });
+}
+
+function determine(scores,coverage){
+ const interest=answers[1]?.value||"neutral";
+ const motive=answers[2]?.value||"practical";
+ const count=Object.values(coverage).reduce((a,b)=>a+b,0);
+ const total=Object.values(scores).reduce((a,b)=>a+b,0);
+ if(interest==="none"||interest==="foodie")return "foodie";
+ if(count<8)return (interest==="curious"||interest==="high")?"curious":"potential";
+ const norm=total/Math.max(1,count*3);
+ if(norm>=.80)return "chef";
+ if(motive==="experiment"&&norm>=.48)return "experiment";
+ if(motive==="creative"&&norm>=.48)return "creative";
+ const ranked=Object.keys(scores).sort((a,b)=>
+  scores[b]/Math.max(1,coverage[b])-scores[a]/Math.max(1,coverage[a]));
+ if(norm>=.45){
+  if(ranked[0]==="heat")return "heat";
+  if(ranked[0]==="seasoning")return "seasoning";
+  if(ranked[0]==="creativity")return "creative";
+  if(ranked[0]==="efficiency")return "speed";
+  if(ranked[0]==="adaptability")return "rescue";
+ }
+ if(interest==="curious"||interest==="high")return "curious";
+ if(motive==="care")return "home";
+ return norm<.45?"practical":"home";
+}
+
+function showResult(){
+ const scores={},coverage={};
+ dimensions.forEach(d=>{scores[d.id]=0;coverage[d.id]=0});
+
+ questions.forEach((q,i)=>{
+  if(q.type!=="ability"||!answers[i])return;
+  const value=q.a[answers[i].index][3];
+  if(value==="na")return;
+  scores[q.dim]+=value;
+  coverage[q.dim]++;
+ });
+
+ const count=Object.values(coverage).reduce((a,b)=>a+b,0);
+ const key=determine(scores,coverage);
+ const r=profiles[key];
+
+ const bars=dimensions.map(d=>{
+  const pct=coverage[d.id]?Math.round(scores[d.id]/(coverage[d.id]*3)*100):null;
+  return `<div class="score-row"><span>${d.name}</span>
+  <div class="bar"><div class="bar-in" style="width:${pct??0}%"></div></div>
+  <b>${pct===null?"—":pct+"%"}</b></div>`;
+ }).join("");
+
+ const note=count<12
+ ?"你跳过了较多能力题，因此图表只展示已回答题目的表现；这不是低分。"
+ :`本次有 ${count} 道能力题计入分析；没经验或不适用的题目已跳过。`;
+
+ $("quiz").classList.add("hide");
+ $("result").classList.add("show");
+ $("progress").style.width="100%";
+
+ $("result").innerHTML=`
+ <div class="result-badge">🍴 你的结果已出炉 · 个性化分析</div>
+ <div class="result-emoji">${r[0]}</div>
+ <h2>你是「${r[1]}」</h2>
+ <p class="result-sub">${r[2]}</p>
+ <p class="result-desc">${r[3]}</p>
+ <div class="traits">${r[4].map(t=>`<span class="trait">${t}</span>`).join("")}</div>
+ <div class="scores"><h3>五大维度参考图</h3>${bars}
+ <p class="note" style="text-align:left">${note}</p></div>
+ <div class="tip"><strong>给你的专属建议：</strong>${r[5]}</div>
+ <div class="actions">
+ <button class="primary" id="restart">再测一次 ↻</button>
+ <button class="secondary" id="share">复制我的测试结果</button>
+ </div>`;
+
+ $("restart").addEventListener("click",restart);
+ $("share").addEventListener("click",()=>share(r,count));
+}
+
+function restart(){
+ current=0;
+ answers=Array(questions.length).fill(null);
+ $("quiz").classList.remove("hide");
+ $("result").classList.remove("show");
+ render();
+ $("quizCard").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+async function share(r,count){
+ const content=`我的厨房隐藏身份：${r[0]} ${r[1]}
+${r[2]}
+有效回答能力题：${count} 道。来测测你的厨房隐藏身份！`;
+ try{
+  await navigator.clipboard.writeText(content);
+ }catch(e){
+  const ta=document.createElement("textarea");
+  ta.value=content;document.body.appendChild(ta);
+  ta.select();document.execCommand("copy");ta.remove();
+ }
+ $("toast").textContent="结果已复制，快去分享吧！";
+ $("toast").classList.add("show");
+ setTimeout(()=>$("toast").classList.remove("show"),2200);
+}
+
+$("back").addEventListener("click",()=>{
+ if(current>0){current--;render()}
+});
+$("next").addEventListener("click",()=>{
+ if(answers[current]===null)return;
+ if(current<questions.length-1){current++;render()}
+ else showResult();
+});
+render();
+</script>
+</body>
+</html>
