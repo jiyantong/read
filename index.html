@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -104,7 +103,7 @@ h1 em{font-style:normal;color:var(--orange)}
 
 <header class="hero">
  <div>
-  <div class="eyebrow">✨ 不会做饭也能测，不给你乱扣分</div>
+  <div class="eyebrow">✨ 16种厨房人格 · 不会做饭也能测</div>
   <h1>你的厨房隐藏身份<br>到底是<em>什么？</em></h1>
   <p>这不是厨艺考试，也不是做饭爱好调查。我们会先了解你与厨房的距离，再观察你的调味判断、火候意识、创意搭配、效率和应变方式。没做过、不适用的题目可以跳过；完全不想做饭，也有属于你的结果。</p>
  </div>
@@ -154,23 +153,28 @@ home:["🥘","家常菜守护神","不追求花哨，但你重视稳定、舒服
 practical:["🍱","高效实用派","做饭对你而言是生活技能，简单、可靠、够用就好。","你重视实际需要，不一定想把下厨变成爱好。选择适合自己的方式，也是一种生活智慧。",["省时省心","目标明确","不做无效努力"],"准备几种简单组合餐，不必追求复杂厨艺，安全、营养、方便就很好。"],
 foodie:["🍽️","美食享乐主义者","你热爱美食，但不需要亲自下厨才能享受它。","你更享受品尝、发现餐厅和感受美食带来的快乐，而不是研究烹饪过程。没做过不等于没能力，只是目前没有足够实践来判断厨艺。",["懂得享受","美食体验派","不勉强自己"],"继续放心享受好吃的！如果哪天想尝试，可以从一道简单的小食开始；如果不想，也完全没问题。"],
 potential:["🌱","厨房潜力待解锁","目前经验还不够多，暂时不代表你没有天赋。","你选择了不少没经验或不适用的选项，所以我们不会用空白答案给你打低分。现在还不能可靠判断你的烹饪能力。",["不急着贴标签","经验待积累","从零开始也可以"],"如果想试试，从煮面、煎蛋或一道简单拌菜开始。"],
-curious:["🌼","新手探索家","经验可能还不多，但你愿意给自己一个尝试的机会。","你对做饭有一定好奇心，不必现在就掌握所有技巧。适合轻松尝试、逐步积累，而不是给自己压力。",["愿意尝试","慢慢解锁","成长型心态"],"挑一道自己喜欢吃、步骤不超过五步的菜，先跟着可靠食谱做一次。"]
+curious:["🌼","新手探索家","经验可能还不多，但你愿意给自己一个尝试的机会。","你对做饭有一定好奇心，不必现在就掌握所有技巧。适合轻松尝试、逐步积累，而不是给自己压力。",["愿意尝试","慢慢解锁","成长型心态"],"挑一道自己喜欢吃、步骤不超过五步的菜，先跟着可靠食谱做一次。"],
+balanced:["🧩","均衡型料理达人","没有明显短板，整体表现相当均衡。","你在调味、火候、创意、效率和应变方面都有一定基础。你可能不是只擅长某一项的专门型选手，但整体协调能力很不错。",["全面发展","稳定发挥","综合型选手"],"尝试制作一道包含多种烹饪方式的完整料理，继续保持各方面的平衡。"],
+planner:["📋","厨房规划师","你擅长安排流程，让厨房运转得井井有条。","你重视时间、步骤和准备工作。比起临场发挥，你更喜欢提前安排，让每件事都有条不紊地完成。",["流程管理","时间规划","组织能力"],"尝试同时准备两道菜，提前安排备菜、加热和收尾的顺序。"],
+careful:["🎯","细节控料理家","你对细节比较敏感，喜欢把每一步做好。","你倾向于谨慎观察、稳妥操作。可能不会追求特别大胆的创新，但对过程和结果都有自己的要求。",["认真细致","谨慎判断","注重品质"],"尝试记录一道菜的调味和火候细节，看看哪些小调整能让结果更好。"],
+learner:["🌱","慢热成长型选手","你正在寻找适合自己的厨房节奏。","你有一定兴趣，但目前的经验还不算丰富。与其追求一下子成为高手，不如从自己喜欢的食物开始，慢慢积累信心。",["成长型心态","循序渐进","潜力待开发"],"从一道自己最喜欢的简单料理开始，完成一次比一次更好就足够了。"],
+minimalist:["🥪","极简生活料理家","你相信生活不必复杂，吃得舒服才是重点。","你更关注便利、实用和生活节奏。你不需要把厨房变成兴趣，也不必为了别人眼中的标准而改变自己。",["简单主义","实用优先","轻松生活"],"准备几种简单、方便的食物组合，让日常饮食更加轻松。"]
 };
 
 const profileQuestions=[
-{q:"你和厨房的熟悉程度是？",desc:"只描述经验，不代表你的天赋或潜力。",a:[
+{type:"profile",q:"你和厨房的熟悉程度是？",desc:"只描述经验，不代表你的天赋或潜力。",a:[
 ["🌱","厨房对我来说像未知领域","基本没做过饭","none"],
 ["🍜","会泡面、加热或做简单食物","入门级经验","basic"],
 ["🥚","偶尔做饭，复杂的就不太会","轻度实践","casual"],
 ["🥘","平时会做一些家常菜","有一定经验","regular"],
 ["👩‍🍳","经常下厨，也会研究做法","熟练或进阶","advanced"]]},
-{q:"如果有机会，你对做饭的兴趣是？",desc:"喜欢吃和喜欢做是两回事，按真实想法选择。",a:[
+{type:"profile",q:"如果有机会，你对做饭的兴趣是？",desc:"喜欢吃和喜欢做是两回事，按真实想法选择。",a:[
 ["🚫","完全没兴趣，能不做就不做","厨房不是我的兴趣区","none"],
 ["🍽️","我喜欢美食，但更喜欢别人做","认真享受美食也很棒","foodie"],
 ["😐","不排斥，但也不会主动研究","有需要时再说","neutral"],
 ["🌱","有点想学，会为好吃的尝试","愿意慢慢解锁","curious"],
 ["✨","很享受做饭和研究新菜","厨房让我快乐","high"]]},
-{q:"哪种厨房情景最像你？",desc:"这道题了解你的偏好，不考厨艺。",a:[
+{type:"profile",q:"哪种厨房情景最像你？",desc:"这道题了解你的偏好，不考厨艺。",a:[
 ["🛵","点外卖、下馆子，快乐最重要","美食体验派","enjoy"],
 ["⚡","简单吃饱就好，省事第一","务实省事派","practical"],
 ["🏡","愿意学几道拿手菜照顾自己或家人","生活实用派","care"],
@@ -184,31 +188,31 @@ const dimensions=[
 ["如果一道菜味道有点淡，怎样处理更稳妥？",["先尝味，再少量补调味","直接多加一点盐或酱料","查一下食谱建议","不确定该怎么调整"]],
 ["面对不熟悉的调味料，你通常会？",["先少量试味，逐步调整","查一下常见用法再试","按食谱给的量使用","不太想尝试陌生调料"]],
 ["一道菜“差一点意思”，最可能先检查什么？",["咸淡、酸甜、鲜香是否平衡","火候和熟度","食材是否新鲜","说不清，凭当下感觉"]],
-["尝到一道新菜，你能否分辨它的主要风味？",["能说出几种味道的平衡","大致能分辨咸淡或酸甜","需要对照描述才知道","通常只觉得好吃或不好吃"]]},
+["尝到一道新菜，你能否分辨它的主要风味？",["能说出几种味道的平衡","大致能分辨咸淡或酸甜","需要对照描述才知道","通常只觉得好吃或不好吃"]]]},
 {id:"heat",name:"火候控制",icon:"🔥",qs:[
 ["煎东西时，发现表面很快变深色，你会怎么做？",["降低火力，观察内部熟度","继续煎到自己觉得差不多","先翻面，再根据状态调整","不确定怎么处理"]],
 ["炒菜时锅里开始冒很多烟，你会怎么处理？",["先关小火或移锅，避免烧焦","快速翻炒，尽快出锅","加点水让温度降下来","不太确定该怎么做"]],
 ["煮东西时，怎样判断是否需要继续加热？",["观察状态并按食材调整时间","严格照食谱时间","尝一下或切开确认","通常凭计时器提醒"]],
 ["控制火候最重要的是什么？",["观察食材变化并及时调整","火力开大一点更有效率","记住每种菜的固定时间","按设备档位操作即可"]],
-["煎蛋或煎饼时，你会如何减少焦糊或夹生？",["用适中火力并观察状态","按经验设定火力和时间","适时翻面确认情况","还没有相关经验"]]},
+["煎蛋或煎饼时，你会如何减少焦糊或夹生？",["用适中火力并观察状态","按经验设定火力和时间","适时翻面确认情况","还没有相关经验"]]]},
 {id:"creativity",name:"创意搭配",icon:"🎨",qs:[
 ["冰箱里剩下一点蔬菜和鸡蛋，你会？",["想想能否组合成新的一餐","搜索现成食谱照着做","分开处理，避免搭配出错","如果麻烦就不做了"]],
 ["遇到没试过的食材，你更倾向于？",["想想它和什么风味适合","先找可靠食谱","先尝试最简单的做法","通常不会主动尝试"]],
 ["熟悉的菜想做出新变化，你会？",["试着调整食材或风味组合","找一个新版本的食谱","先把原版做稳定","我更喜欢直接吃现成的"]],
 ["家里食材不齐，缺了一种，你会？",["找风味或功能相近的替代品","查查能不能替换","尽量等食材齐了再做","不知道该怎么替换"]],
-["看到别人分享新奇料理时，你的第一反应是？",["想研究做法，甚至改出自己的版本","收藏起来，有机会照着做","觉得新鲜，但不一定尝试","看看就好，没兴趣下厨"]]},
+["看到别人分享新奇料理时，你的第一反应是？",["想研究做法，甚至改出自己的版本","收藏起来，有机会照着做","觉得新鲜，但不一定尝试","看看就好，没兴趣下厨"]]]},
 {id:"efficiency",name:"厨房效率",icon:"⚡",qs:[
 ["临时要准备一顿饭，你会如何开始？",["先规划顺序和所需时间","先处理最容易的一道菜","边做边想下一步","尽量选择外卖或现成食品"]],
 ["需要同时准备主食和菜时，你会？",["安排好先后顺序，利用等待时间","先做完一道再开始下一道","想到什么做什么","尽量减少需要动手的步骤"]],
 ["备菜时，你觉得最有帮助的习惯是？",["先看全流程，再集中准备食材","用到什么再拿什么","按食谱顺序一步步来","不太了解备菜流程"]],
 ["做完一顿饭后，你通常会？",["顺手整理，减少下次准备成本","先吃饭，之后再收拾","只清理必须清理的部分","希望有人来收拾"]],
-["要在有限时间内准备食物，你会优先考虑？",["能并行处理的步骤和整体节奏","最拿手、最稳妥的做法","选步骤最少的食物","直接买现成的更方便"]]},
+["要在有限时间内准备食物，你会优先考虑？",["能并行处理的步骤和整体节奏","最拿手、最稳妥的做法","选步骤最少的食物","直接买现成的更方便"]]]},
 {id:"adaptability",name:"应变能力",icon:"🛠️",qs:[
 ["做菜时发现少了一种关键食材，你会？",["判断能否替代，并调整做法","搜索替代方案后再决定","尽量按原计划完成","放弃这道菜，换个简单的"]],
 ["一道菜意外做咸了，你会怎么想？",["根据菜品判断稀释或平衡味道","加一些合适食材试试","搭配主食一起吃","下次再说，这次认了"]],
 ["食物状态和食谱图片不一样，你会？",["观察原因，判断是否要调整","再看一遍食谱步骤","继续按原定时间操作","担心失败，不知道怎么办"]],
 ["朋友临时提出饮食偏好，你会？",["调整菜单或做法，尽量兼顾","找一道适合的替代菜","让对方自己选能吃的","觉得麻烦，尽量不改"]],
-["第一次尝试失败后，你通常会？",["复盘原因，下次改一个变量","找更清楚的教程再试","按原方法再来一次","以后尽量不做这道菜"]]}
+["第一次尝试失败后，你通常会？",["复盘原因，下次改一个变量","找更清楚的教程再试","按原方法再来一次","以后尽量不做这道菜"]]]}
 ];
 
 const questions=[...profileQuestions];
@@ -230,10 +234,10 @@ const $=id=>document.getElementById(id);
 function render(){
  const q=questions[current];
  $("step").textContent=`第 ${current+1} / ${questions.length} 题`;
- $("kicker").textContent=q.type==="profile"?"FIRST, GET TO KNOW YOU":q.dimName.toUpperCase()+" · 能力观察";
+ $("kicker").textContent=q.type==="profile"?"FIRST, GET TO KNOW YOU":`${q.dimName.toUpperCase()} · ${String(current-profileQuestions.length).padStart(2,"0")}`;
  $("question").textContent=q.q;
  $("desc").textContent=q.desc||"";
- $("progress").style.width=`${current/questions.length*100}%`;
+ $("progress").style.width=`${(current+1)/questions.length*100}%`;
  $("back").disabled=current===0;
  $("next").disabled=answers[current]===null;
  $("next").textContent=current===questions.length-1?"揭晓我的厨房身份 ✨":"选好了，下一题 →";
@@ -254,28 +258,57 @@ function render(){
 }
 
 function determine(scores,coverage){
- const interest=answers[1]?.value||"neutral";
- const motive=answers[2]?.value||"practical";
- const count=Object.values(coverage).reduce((a,b)=>a+b,0);
- const total=Object.values(scores).reduce((a,b)=>a+b,0);
- if(interest==="none"||interest==="foodie")return "foodie";
- if(count<8)return (interest==="curious"||interest==="high")?"curious":"potential";
- const norm=total/Math.max(1,count*3);
- if(norm>=.80)return "chef";
- if(motive==="experiment"&&norm>=.48)return "experiment";
- if(motive==="creative"&&norm>=.48)return "creative";
- const ranked=Object.keys(scores).sort((a,b)=>
-  scores[b]/Math.max(1,coverage[b])-scores[a]/Math.max(1,coverage[a]));
- if(norm>=.45){
-  if(ranked[0]==="heat")return "heat";
-  if(ranked[0]==="seasoning")return "seasoning";
-  if(ranked[0]==="creativity")return "creative";
-  if(ranked[0]==="efficiency")return "speed";
-  if(ranked[0]==="adaptability")return "rescue";
- }
- if(interest==="curious"||interest==="high")return "curious";
- if(motive==="care")return "home";
- return norm<.45?"practical":"home";
+  const interest=answers[1]?.value||"neutral";
+  const motive=answers[2]?.value||"practical";
+  const experience=answers[0]?.value||"none";
+
+  const count=Object.values(coverage).reduce((a,b)=>a+b,0);
+  const total=Object.values(scores).reduce((a,b)=>a+b,0);
+  const norm=total/Math.max(1,count*3);
+
+  // 完全不感兴趣或只喜欢享受美食
+  if(interest==="none"||interest==="foodie") return "foodie";
+
+  // 有效回答太少，不随意给能力贴标签
+  if(count<8){
+    return (interest==="curious"||interest==="high") ? "curious" : "potential";
+  }
+
+  // 综合能力突出
+  if(norm>=0.80) return "chef";
+
+  // 兴趣偏好与能力表现结合
+  if(motive==="experiment"&&norm>=0.48) return "experiment";
+  if(motive==="creative"&&norm>=0.48) return "creative";
+
+  const ranked=Object.keys(scores).sort((a,b)=>
+    scores[b]/Math.max(1,coverage[b])-scores[a]/Math.max(1,coverage[a])
+  );
+  const first=ranked[0];
+  const firstScore=scores[first]/Math.max(1,coverage[first]);
+  const secondScore=scores[ranked[1]]/Math.max(1,coverage[ranked[1]]);
+
+  // 多维度表现接近，判定为均衡型
+  if(norm>=0.55&&Math.abs(firstScore-secondScore)<=0.35) return "balanced";
+
+  // 突出能力类型
+  if(norm>=0.45){
+    if(first==="heat") return "heat";
+    if(first==="seasoning") return "seasoning";
+    if(first==="creativity") return "creative";
+    if(first==="efficiency") return "speed";
+    if(first==="adaptability") return "rescue";
+  }
+
+  // 中等表现时进一步区分做事风格
+  if(first==="efficiency"&&norm>=0.35) return "planner";
+  if((first==="heat"||first==="seasoning")&&norm>=0.35) return "careful";
+
+  if(interest==="curious"||interest==="high") return "learner";
+  if(experience==="regular"||experience==="advanced") return "home";
+  if(motive==="care") return "home";
+  if(norm>=0.35) return "balanced";
+  return "minimalist";
 }
 
 function showResult(){
